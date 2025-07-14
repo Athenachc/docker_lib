@@ -1,12 +1,15 @@
 # docker_lib
 
+
 ## Build image
 ```
+chmod +x ./build_docker.sh .sh # do it once only
 ./build_docker.sh {pkg arg}
 ```
 
 ## Run image and generate container
 ```
+chmod +x ./run_docker.sh .sh # do it once only
 ./run_docker.sh {pkg arg}
 ```
 
@@ -29,7 +32,7 @@
          record_3_time_decay_idle \
          record_4_home_decay_no_home_in_training \
          record_4_home_decay_with_home_in_training
-         
+
   unzip record_1_different_directions.zip -d record_1_different_directions
   unzip record_2_diff_sparsity.zip -d record_2_diff_sparsity
   unzip record_3_time_decay_unloaded.zip -d record_3_time_decay_unloaded
