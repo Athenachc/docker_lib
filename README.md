@@ -45,7 +45,7 @@ chmod +x ./run_docker.sh # do it once only
 
   ```
 
-- [raw]: a minimal container with the ROS Noetic environment
+- raw: a minimal container with the ROS Noetic environment
 
 ## docker notes
 Feel free to have a look: [here](https://github.com/Athenachc/coding_memo/tree/main/docker)
