@@ -3,13 +3,13 @@
 
 ## Build image
 ```
-chmod +x ./build_docker.sh .sh # do it once only
+chmod +x ./build_docker.sh # do it once only
 ./build_docker.sh {pkg arg}
 ```
 
 ## Run image and generate container
 ```
-chmod +x ./run_docker.sh .sh # do it once only
+chmod +x ./run_docker.sh # do it once only
 ./run_docker.sh {pkg arg}
 ```
 
