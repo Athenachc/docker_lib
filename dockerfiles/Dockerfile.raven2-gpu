@@ -1,0 +1,13 @@
+FROM athenachc/ros_noetic:raven2-gpu
+ENV DEBIAN_FRONTEND=noninteractive
+ARG HOME=/root
+
+WORKDIR $HOME/raven2-ambf-crtk
+
+# Copy your zip file into the image
+COPY /dockerfiles/raven2_dataset.zip /root/raven2_dataset.zip
+
+RUN sed -i "s|file_location = .*|file_location = '/root/raven2_dataset/record_1_different_directions'|" sim_test.py && \
+    sed -i "s|file_name = .*|file_name = 'data_record_x_03.csv'|" sim_test.py
+
+WORKDIR /root

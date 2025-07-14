@@ -1,0 +1,5 @@
+FROM athenachc/ros_noetic:raw-gpu
+ENV DEBIAN_FRONTEND=noninteractive
+ARG HOME=/root
+
+WORKDIR $HOME
