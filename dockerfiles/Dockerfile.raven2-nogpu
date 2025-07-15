@@ -4,26 +4,18 @@ ARG HOME=/root
 
 WORKDIR $HOME
 
-# # Copy your zip file into the image
-# COPY /dockerfiles/raven2_dataset.zip /root/raven2_dataset.zip
-
-# RUN sed -i "s|file_location = .*|file_location = '/root/raven2_dataset/record_1_different_directions'|" sim_test.py && \
-#     sed -i "s|file_name = .*|file_name = 'data_record_x_03.csv'|" sim_test.py
+# Install dependencies
+RUN apt update && apt install -y \
+    ca-certificates \
+     libasound2-dev \
+&& rm -rf /var/lib/apt/lists/*
 
 # ambf
 RUN git clone https://github.com/Athenachc/ambf.git  && \
-    cd ~/ambf && mkdir build && \
-    cd ~/ambf/build && \
+    mkdir -p $HOME/ambf/build && \
+    cd $HOME/ambf/build && \
     cmake .. && \
     make
 # RUN source ./devel/setup.bash
-RUN echo "source ~/ambf/build/devel/setup.bash" >> ~/.bashrc && \
-    echo "alias ambf_simulator=~/ambf/bin/lin-x86_64/ambf_simulator" >> ~/.bashrc
-
-# RUN mkdir -p ~/airo_trajectory_ws/src && \
-#     cd ~/airo_trajectory_ws/src && git clone https://github.com/HKPolyU-UAV/airo_trajectory.git && \
-#     cd ~/airo_trajectory_ws/src/airo_trajectory && git checkout vicon && \
-#     cd ~/airo_trajectory_ws
-# RUN /bin/bash -c '. /opt/ros/noetic/setup.bash;. ~/airo_control_interface_ws/devel/setup.bash; cd ~/airo_trajectory_ws/;\
-#     catkin_make'
-# RUN echo "source ~/airo_trajectory_ws/devel/setup.bash" >> ~/.bashrc
+RUN echo "source ~/ambf/build/devel/setup.bash" >> $HOME/.bashrc && \
+    echo "alias ambf_simulator=~/ambf/bin/lin-x86_64/ambf_simulator" >> $HOME/.bashrc
