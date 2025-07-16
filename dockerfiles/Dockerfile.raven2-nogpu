@@ -14,11 +14,22 @@ RUN apt update && apt install -y \
 RUN git clone https://github.com/Athenachc/ambf.git && \
     mkdir -p $HOME/ambf/build && \
     cd $HOME/ambf/build && \
-    cmake .. && \  
+    cmake .. && \
     make
 
 RUN cd $HOME/ambf/build && \
     echo "source ~/ambf/build/devel/setup.bash" >> $HOME/.bashrc && \
     echo "alias ambf_simulator=~/ambf/bin/lin-x86_64/ambf_simulator" >> $HOME/.bashrc
 
-    WORKDIR $HOME/ambf
+# raven2
+RUN mkdir -p $HOME/raven2_ws/src && \
+    cd $HOME/raven2_ws/src && \
+    git clone https://github.com/uw-biorobotics/raven2.git && \
+    cd $HOME/raven2_ws && \
+    catkin_make && \
+    echo "source ~/raven2_ws/devel/setup.bash" >> $HOME/.bashrc
+# raven2-ambf-crtk
+RUN cd $HOME && git clone https://github.com/Athenachc/raven2-ambf-crtk.git && \
+    echo "alias ambf-raven2="~/ambf/bin/lin-x86_64/ambf_simulator -a '~root/ambf/ambf_models/meshes/blender_afmb/raven_2/raven_straight.yaml'"" >> $HOME/.bashrc
+
+WORKDIR $HOME/
