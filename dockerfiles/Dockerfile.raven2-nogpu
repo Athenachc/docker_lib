@@ -7,7 +7,8 @@ WORKDIR $HOME
 # Install dependencies
 RUN apt update && apt install -y \
     ca-certificates \
-     libasound2-dev \
+    libasound2-dev \
+    ros-noetic-catkin \
 && rm -rf /var/lib/apt/lists/*
 
 # ambf
@@ -24,12 +25,14 @@ RUN cd $HOME/ambf/build && \
 # raven2
 RUN mkdir -p $HOME/raven2_ws/src && \
     cd $HOME/raven2_ws/src && \
-    git clone https://github.com/uw-biorobotics/raven2.git && \
-    cd $HOME/raven2_ws && \
-    catkin_make && \
-    echo "source ~/raven2_ws/devel/setup.bash" >> $HOME/.bashrc
+    git clone https://github.com/uw-biorobotics/raven2.git 
+    #&& \
+    # cd $HOME/raven2_ws && \
+    # catkin_make && \
+    # echo "source ~/raven2_ws/devel/setup.bash" >> $HOME/.bashrc
+
 # raven2-ambf-crtk
 RUN cd $HOME && git clone https://github.com/Athenachc/raven2-ambf-crtk.git && \
-    echo "alias ambf-raven2="~/ambf/bin/lin-x86_64/ambf_simulator -a '~root/ambf/ambf_models/meshes/blender_afmb/raven_2/raven_straight.yaml'"" >> $HOME/.bashrc
+    echo "alias ambf-raven2="~/ambf/bin/lin-x86_64/ambf_simulator -a '~/ambf/ambf_models/meshes/blender_afmb/raven_2/raven_straight.yaml'"" >> $HOME/.bashrc
 
 WORKDIR $HOME/
