@@ -19,6 +19,7 @@ RUN git clone https://github.com/Athenachc/ambf.git && \
     ls -la $HOME/ambf
 RUN cd $HOME/ambf/build && cmake ..
 RUN cd $HOME/ambf/build && make
+RUN ls -la $HOME/ambf/build/bin
 
 RUN cd $HOME/ambf/build && \
     echo "source ~/ambf/build/devel/setup.bash" >> $HOME/.bashrc && \
