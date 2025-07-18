@@ -14,9 +14,9 @@ RUN apt update && apt install -y \
 # ambf
 RUN git clone https://github.com/Athenachc/ambf.git && \
     mkdir -p $HOME/ambf/build && \
-    cd $HOME/ambf/build && \
-    cmake .. && \
-    make
+    ls -la $HOME/ambf
+RUN cd $HOME/ambf/build && cmake ..
+RUN cd $HOME/ambf/build && make
 
 RUN cd $HOME/ambf/build && \
     echo "source ~/ambf/build/devel/setup.bash" >> $HOME/.bashrc && \
