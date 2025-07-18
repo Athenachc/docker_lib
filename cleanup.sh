@@ -1,15 +1,16 @@
 #!/bin/bash
 
-XAUTH_N=/tmp/.docker.xauth-n
+XAUTH=/tmp/.docker.xauth
 
-# Remove any existing file or directory
-if [ -e $XAUTH_N ]; then
-  sudo rm -rf $XAUTH_N
+# Remove existing file or directory
+if [ -e $XAUTH ]; then
+  sudo rm -rf $XAUTH
 fi
 
-# Create as a clean file
-touch $XAUTH_N
-chmod 600 $XAUTH_N
+# Create as clean file
+touch $XAUTH
+chmod 600 $XAUTH
 
 # Merge xauth data
-xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH_N nmerge -
+xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
+
